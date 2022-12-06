@@ -65,11 +65,22 @@ function showResult() {
   resultPanel.classList.remove('counter__result--hidden');
 }
 
+function hideResult() {
+  if(!resultPanel.classList.contains('counter__result--hidden')){
+    resultPanel.classList.add('counter__result--hidden');
+  }
+}
+
+
 document.querySelectorAll('input').forEach((it) => {
   it.addEventListener('input', checkData);
 });
 
-document.querySelector('.counter__form').addEventListener('reset', resetButtons);
+document.querySelector('.counter__form').addEventListener('reset', 
+() => {
+  resetButtons();
+  hideResult();
+});
 
 document.addEventListener('submit', (event) => {    
   event.preventDefault();
