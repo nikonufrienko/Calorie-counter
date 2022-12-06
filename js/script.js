@@ -65,7 +65,7 @@ function showResult() {
   resultPanel.classList.remove('counter__result--hidden');
 }
 
-document.querySelectorAll('input[type="text"]').forEach((it) => {
+document.querySelectorAll('input').forEach((it) => {
   it.addEventListener('input', checkData);
 });
 
