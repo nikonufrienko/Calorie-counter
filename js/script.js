@@ -1,8 +1,8 @@
-let submitButton = document.querySelector('.form__submit-button');
-let resetButton = document.querySelector('.form__reset-button');
-let resultPanel = document.querySelector('.counter__result');
+const submitButton = document.querySelector('.form__submit-button');
+const resetButton = document.querySelector('.form__reset-button');
+const resultPanel = document.querySelector('.counter__result');
 
-let coefficients = {
+const coefficients = {
   'activity-minimal' : 1.2,
   'activity-low' : 1.375,
   'activity-medium': 1.55,
@@ -11,7 +11,7 @@ let coefficients = {
 };
 
 function getData() {
-  let data = {
+  const data = {
     gender: document.querySelector('input[name="gender"]:checked').id,
     age: document.querySelector('#age').value,
     height: document.querySelector('#height').value,
@@ -23,10 +23,10 @@ function getData() {
 }
 
 //получаем значения по умолчанию 
-let defaultData = getData();
+const defaultData = getData();
 
 function checkData() {
-  let data = getData();
+  const data = getData();
   if((data.isCompleted && submitButton.disabled) || (!data.isCompleted && !submitButton.disabled)) {
     submitButton.toggleAttribute('disabled');
   }
@@ -44,21 +44,21 @@ function resetButtons() {
 }
 
 function calculateResult(data) {
-  if (data.gender == 'gender-male') {
-    return coefficients[data.activity] * ((10 * data.weight) + (6.25 * data.height) - (5 * data.height) + 5);
-  } else if (data.gender == 'gender-female') {
-    return coefficients[data.activity] * ((10 * data.weight) + (6.25 * data.height) - (5 * data.height) - 161);
+  if (data.gender === 'gender-male') {
+    return coefficients[data.activity] * ((10 * data.weight) + (6.25 * data.height) - (5 * data.age) + 5);
+  } else if (data.gender === 'gender-female') {
+    return coefficients[data.activity] * ((10 * data.weight) + (6.25 * data.height) - (5 * data.age) - 161);
   } 
   return null;
 }
 
 function showResult() {
-  let caloriesNorm = document.querySelector('#calories-norm');
-  let caloriesMinimal = document.querySelector('#calories-minimal');
-  let caloriesMaximal = document.querySelector('#calories-maximal');
-  let norm = calculateResult(getData());
-  let minimal = norm - norm*0.15;
-  let maximal = norm + norm*0.15;
+  const caloriesNorm = document.querySelector('#calories-norm');
+  const caloriesMinimal = document.querySelector('#calories-minimal');
+  const caloriesMaximal = document.querySelector('#calories-maximal');
+  const norm = calculateResult(getData());
+  const minimal = norm - norm*0.15;
+  const maximal = norm + norm*0.15;
   caloriesNorm.textContent = Math.round(norm);
   caloriesMinimal.textContent = Math.round(minimal);
   caloriesMaximal.textContent = Math.round(maximal);
